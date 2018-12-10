@@ -1,0 +1,115 @@
+<nz-header>
+<div class="system-header">
+  <div class="logo">
+   <div class="systemName">{{ systemInfo.systemName }}</div>
+   <div class="systemEnglishName">{{ systemInfo.systemEnglishName }}</div>
+  </div>
+  <div class="user-info">
+    <div class="user-name" *ngIf="loginInfo.isLoginIn">
+      Hi&nbsp;!&nbsp;
+      <nz-dropdown [nzPlacement]="'bottomCenter'">
+        <span nz-dropdown>管理员<i nz-icon type="down"></i></span>
+        <ul nz-menu>
+        <!--   <li nz-menu-item>
+            <a><i nz-icon type="paper-clip"></i>&nbsp;&nbsp;个人信息</a>
+          </li> -->
+          <li nz-menu-item>
+            <a (click)="updatePassword()"><i nz-icon type="warning"></i>&nbsp;&nbsp;修改密码</a>
+            <!-- 修改密码模态框 -->
+            <nz-modal [(nzVisible)]="isUpdatePassword" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="updatePwdModelClose()">
+              <ng-template #modalTitle>
+                修改密码
+              </ng-template>
+              <ng-template #modalContent>
+                <form nz-form [formGroup]="updatePwdValidateForm" [nzLayout]="vertical" class="login-form" (ngSubmit)="submitPwdForm()">
+                  <nz-form-item>
+                    <nz-form-control>
+                      <nz-input-group [nzPrefix]="prefixUser">
+                        <input type="text" nz-input formControlName="userName" placeholder="用户名">
+                      </nz-input-group>
+                      <nz-form-explain *ngIf="updatePwdValidateForm.get('userName').dirty && updatePwdValidateForm.get('userName').errors">请输入用户名!</nz-form-explain>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control>
+                      <nz-input-group [nzPrefix]="prefixLock">
+                        <input type="password" nz-input formControlName="password" placeholder="原密码">
+                      </nz-input-group>
+                      <nz-form-explain *ngIf="updatePwdValidateForm.get('password').dirty && updatePwdValidateForm.get('password').errors">请输入原密码!</nz-form-explain>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control>
+                      <nz-input-group [nzPrefix]="prefixLock">
+                        <input type="password" nz-input formControlName="newPassword" placeholder="新密码">
+                      </nz-input-group>
+                      <nz-form-explain *ngIf="updatePwdValidateForm.get('newPassword').dirty && updatePwdValidateForm.get('newPassword').errors">请输入新密码!</nz-form-explain>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control>
+                      <nz-input-group [nzPrefix]="prefixLock">
+                        <input type="password" nz-input formControlName="checkPassword" placeholder="确认密码">
+                      </nz-input-group>
+                      <nz-form-explain *ngIf="updatePwdValidateForm.get('checkPassword').dirty && updatePwdValidateForm.get('checkPassword').errors">两次输入密码不相同!</nz-form-explain>
+                    </nz-form-control>
+                  </nz-form-item>
+                </form>
+                <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+                <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+              </ng-template>
+              <ng-template #modalFooter>
+                <button nz-button nzType="primary" (click)="submitPwdForm()" [nzLoading]="isConfirmLoading">确认修改</button>
+              </ng-template>
+            </nz-modal>
+            <!-- 修改密码模态框 -->
+          </li>
+          <li nz-menu-item>
+            <a (click)="logout()"><i nz-icon type="logout"></i>&nbsp;&nbsp;退出登录</a>
+          </li>
+        </ul>
+      </nz-dropdown>
+    </div>
+    <div class="user-name" *ngIf="!loginInfo.isLoginIn">
+      <span *ngIf="!islogining"><a (click)="login()" class="login">登录</a></span>
+      <!-- 登录模态框 -->
+      <nz-modal [(nzVisible)]="islogining" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="loginModelClose()">
+        <ng-template #modalTitle>
+          登录
+        </ng-template>
+        <ng-template #modalContent>
+          <form nz-form [formGroup]="loginValidateForm" [nzLayout]="vertical" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-input-group [nzPrefix]="prefixUser">
+                  <input type="text" nz-input formControlName="userName" placeholder="用户名">
+                </nz-input-group>
+                <nz-form-explain *ngIf="loginValidateForm.get('userName').dirty && loginValidateForm.get('userName').errors">请输入用户名!</nz-form-explain>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <nz-input-group [nzPrefix]="prefixLock">
+                  <input type="password" nz-input formControlName="password" placeholder="密码">
+                </nz-input-group>
+                <nz-form-explain *ngIf="loginValidateForm.get('password').dirty && loginValidateForm.get('password').errors">请输入正确的密码!</nz-form-explain>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+          <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+          <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+        </ng-template>
+        <ng-template #modalFooter>
+          <button nz-button nzType="primary" (click)="submitForm()" [nzLoading]="isConfirmLoading">登录</button>
+        </ng-template>
+      </nz-modal>
+      <!-- 登录模态框 -->
+      <span *ngIf="!islogining"><a>注册</a></span>
+      <span *ngIf="islogining"><i nz-icon type="loading"></i></span>
+    </div>
+    <div class="user-photo">
+      <i nz-icon type="user" theme="outline"></i>
+    </div>
+  </div>
+</div>
+</nz-header>

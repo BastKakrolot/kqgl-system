@@ -1,0 +1,60 @@
+.system-header{
+  display: flex;
+  .logo {
+    flex-grow: 1;
+    height: 100%;
+    // background: rgba(255,255,255,.2);
+    padding: 3px 20px;
+    color: #fff;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    .systemEnglishName{
+      flex-grow: 1;
+      line-height: 28px;
+      font-size: 12px;
+    }
+    .systemName{
+      line-height: 30px;
+      font-size: 25px;
+      flex-grow: 3;
+    }
+  }
+  .user-info{
+    flex: none;
+    display: flex;
+    .user-photo{
+      flex: none;
+      i{
+        line-height: 64px;
+        color: #fff;
+        font-size: 35px !important;
+      }
+    }
+    .user-name{
+      flex: none;
+      color: #fff;
+      padding: 0 20px;
+      .login{
+        margin-right: 10px;
+      }
+      span{
+        cursor: pointer;
+        a,i{
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+.ant-layout-header{
+  padding-left: 22px;
+  background-color: #004d96;
+}
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
