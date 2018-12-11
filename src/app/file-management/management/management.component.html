@@ -79,54 +79,31 @@
         <thead>
           <tr>
             <!-- <th nzWidth="65px" nzLeft="0px" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th> -->
-            <th nzWidth="15%">雇员编号</th>
-            <th nzWidth="15%">用户名称</th>
-            <th nzWidth="15%">所属部门</th>
-            <th nzWidth="25%">职务</th>
-            <th nzWidth="15%">入职日期</th>
-            <th nzWidth="15%">操作</th>
+            <th nzLeft="0px" nzWidth="100px">雇员编号</th>
+            <th nzLeft="100px" nzWidth="100px">用户名称</th>
+            <th nzWidth="200px">所属部门</th>
+            <th>职务</th>
+            <th nzWidth="200px">入职日期</th>
+            <th nzRight="0px" nzWidth="200px">操作</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of nzTable.data">
           <!--   <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="nzCheckedChange(data)"></td> -->
-            <td>{{data.employeeNo}}</td>
-            <td>{{data.userName}}</td>
+            <td nzLeft="0px">{{data.employeeNo}}</td>
+            <td nzLeft="100px">{{data.userName}}</td>
             <td>{{data.depName}}</td>
             <td>{{data.duty}}</td>
             <td>{{data.entryDate}}</td>
-            <td class="table-option">
+            <td nzRight="0px" class="table-option">
               <a (click)="checkItemMore(data)">
-                <i nz-icon type="eye"></i>
-                <nz-modal [(nzVisible)]="isVisibleMore" nzTitle="员工详情" [nzFooter]='null' (nzOnCancel)="isVisibleMore=false">
-                  <p>雇员编号:{{detail?.employeeNo}}</p>
-                  <p>签到编号:{{detail?.signInNo}}</p>
-                  <p>用户名:{{detail?.userName}}</p>
-                  <p>地区:{{detail?.region}}</p>
-                  <p>所属部门:{{detail?.depName}}</p>
-                  <p>职务:{{detail?.duty}}</p>
-                  <p>角色:{{detail?.role}}</p>
-                  <p>入职日期:{{detail?.entryDate}}</p>
-                  <p>社会工龄:{{detail?.socialWorkingAge}}</p>
-                  <p>毕业日期:{{detail?.graduationDate}}</p>
-                  <p>离职日期:{{detail?.leaveDate}}</p>
-                </nz-modal>
+                <i nz-icon type="eye"></i>详情
               </a>
               <a (click)="checkItemUpdate(data)">
                 <i nz-icon type="edit"></i>修改
-                <nz-modal [(nzVisible)]="isVisibleUpdate" nzTitle="修改信息" [nzFooter]='null' (nzOnCancel)="isVisibleUpdate=false">
-                  <p>姓名:{{detail?.name}}</p>
-                  <p>年龄:{{detail?.age}}</p>
-                  <p>编号:{{detail?.address}}</p>
-                </nz-modal>
               </a>
               <a (click)="checkItemLive(data)">
                 <i nz-icon type="close-circle"></i>离职
-                <nz-modal [(nzVisible)]="isVisibleLive" nzTitle="数据详情" [nzFooter]='null' (nzOnCancel)="isVisibleLive=false">
-                  <p>姓名:{{detail?.name}}</p>
-                  <p>年龄:{{detail?.age}}</p>
-                  <p>编号:{{detail?.address}}</p>
-                </nz-modal>
               </a>
             </td>
           </tr>

@@ -1,25 +1,26 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { NzFormatEmitEvent } from 'ng-zorro-antd';
+import { NzFormatEmitEvent, NzMessageService, NzModalService } from 'ng-zorro-antd';
 import { ManagementService } from './management.service';
+import { GmModalMoreComponent } from '../../module/gm-modal-more/gm-modal-more.component';
 
 /**
  * @interface 表格宽高
  */
 interface TableScroll {
-  // x: string;
+  x: string;
   y: string;
 }
 
-/**
- * @interface 表格数据
- */
-interface TableData {
-  name: string;
-  age: number;
-  address: string;
-  checked?: boolean;
-  disabled?: boolean;
-}
+// /**
+//  * @interface 表格数据
+//  */
+// interface TableData {
+//   name: string;
+//   age: number;
+//   address: string;
+//   checked?: boolean;
+//   disabled?: boolean;
+// }
 
 @Component({
   selector: 'management',
@@ -36,7 +37,7 @@ export class ManagementComponent implements OnInit {
     let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 150;
     // let tableClientWidth = this.tableBox['nativeElement'].clientWidth;
     this.tableScroll = {
-      // x: '${tableClientWidth}px',
+      x: '1200px',
       y: `${tableClientHeight}px`
     };
   }
@@ -51,14 +52,9 @@ export class ManagementComponent implements OnInit {
   // 表格相关
   allChecked = false;
   indeterminate = false;
-  currentPageData: Array<TableData> = [];
-  checkedData: Array<TableData> = [];
-
-  // 弹框相关
-  isVisibleMore = false;
-  isVisibleUpdate = false;
-  isVisibleLive = false;
-  detail: TableData;
+  currentPageData: Array<any> = [];
+  checkedData: Array<any> = [];
+  detail;
 
   nodes;
   // 树节点点击事件
@@ -74,7 +70,7 @@ export class ManagementComponent implements OnInit {
   // }
 
   // 单选
-  nzCheckedChange(data?: TableData): void {
+  nzCheckedChange(data?): void {
     this.checkedData = [];
     const allChecked = this.currentPageData.filter(value => !value.disabled).every(value => value.checked === true);
     const allUnChecked = this.currentPageData.filter(value => !value.disabled).every(value => !value.checked);
@@ -98,17 +94,36 @@ export class ManagementComponent implements OnInit {
     this.nzCheckedChange();
   }
   // 点击操作事件
-  checkItemMore(data: TableData): void {
-    this.isVisibleMore = true;
-    this.detail = data;
+  checkItemMore(data): void {
+    const modal = this.modalService.create({
+      nzTitle: '员工信息',
+      nzContent: GmModalMoreComponent,
+      nzComponentParams: {
+        detail: data,
+        moduleName: 'more'
+      },
+      nzFooter: null
+    });
   }
-  checkItemUpdate(data: TableData): void {
-    this.isVisibleUpdate = true;
-    this.detail = data;
+  checkItemUpdate(data): void {
+    const modal = this.modalService.create({
+      nzTitle: '修改信息',
+      nzContent: GmModalMoreComponent,
+      nzComponentParams: {
+        detail: data,
+        moduleName: 'update'
+      }
+    });
   }
-  checkItemLive(data: TableData): void {
-    this.isVisibleLive = true;
-    this.detail = data;
+  checkItemLive(data): void {
+    const modal = this.modalService.create({
+      nzTitle: '离职',
+      nzContent: GmModalMoreComponent,
+      nzComponentParams: {
+        detail: data,
+        moduleName: 'live'
+      }
+    });
   }
   changePageNum(event) {
     this.currentPageNum = event;
@@ -121,12 +136,19 @@ export class ManagementComponent implements OnInit {
   getData() {
     this.managementService.getUserData({size: this.pageSizeNum, current: this.currentPageNum}).subscribe(
       data => {
-        this.totalPageNum = data.data.page.total;
-        this.dataSet = data.data.page.records;
+        if (!data.data && data.data == null) {
+          this.message.create('error', '未获取到数据！');
+        } else {
+          this.totalPageNum = data.data.page.total;
+          this.dataSet = data.data.page.records;
+        }
+      },
+      () => {
+        this.message.create('error', '未获取到数据！');
       }
     );
   }
-  constructor(private managementService: ManagementService) {
+  constructor(private managementService: ManagementService, private message: NzMessageService, private modalService: NzModalService) {
   }
   ngOnInit(): void {
     // for (let i = 0; i < 100; i++) {
@@ -140,13 +162,20 @@ export class ManagementComponent implements OnInit {
     let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 150;
     // let tableClientWidth = this.tableBox['nativeElement'].clientWidth;
     this.tableScroll = {
-      // x: '${tableClientWidth}px',
+      x: '1200px',
       y: `${tableClientHeight}px`
     };
     this.getData();
     this.managementService.getDepartmentData().subscribe(
       data => {
-        this.nodes = this.managementService.changeTreeNode(data.data, 'depName', 'childDep');
+        if (!data.data && data.data == null) {
+          this.message.create('error', '未获取到数据！');
+        } else {
+          this.nodes = this.managementService.changeTreeNode(data.data, 'depName', 'childDep');
+        }
+      },
+      () => {
+        this.message.create('error', '未获取到数据！');
       }
     );
   }
