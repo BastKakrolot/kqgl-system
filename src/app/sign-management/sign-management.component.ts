@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'sign-management',
-  templateUrl: './sign-management.component.html',
-  styleUrls: ['./sign-management.component.css']
+  template: `<router-outlet></router-outlet>`
 })
 export class SignManagementComponent implements OnInit {
 

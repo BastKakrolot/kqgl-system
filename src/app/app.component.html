@@ -5,14 +5,14 @@
       <ul nz-menu [nzTheme]="'light'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
         <ng-container *ngFor="let item of navi; let i = index;">
           <!-- 无子节点 -->
-          <li class="nav-item" nz-menu-item *ngIf="!item.children" routerLink="{{item.path}}" routerLinkActive #rla="routerLinkActive"
+          <li class="nav-item" (click)="showLog()" nz-menu-item *ngIf="!item.children" [routerLink]="item.path" routerLinkActive #rla="routerLinkActive"
             [nzSelected]="rla.isActive"><span><i nz-icon [type]="item.class"></i><span class="nav-text" [nzTitle]="item.name" nzPlacement="right" nz-tooltip>{{item.name}}</span></span></li>
           <!-- 有子节点 -->
           <li class="nav-item" nz-submenu *ngIf="item.children" routerLinkActive #rla="routerLinkActive" [nzOpen]="rla.isActive && !isCollapsed"
             [class.ant-menu-item-selected]="isCollapsed && rla.isActive">
             <span title><i nz-icon [type]="item.class"></i><span class="nav-text" [nzTitle]="item.name" nzPlacement="right" nz-tooltip>{{item.name}}</span></span>
             <ul>
-              <li nz-menu-item *ngFor="let subItem of item.children" routerLink="{{item.path+subItem.path}}" routerLinkActive="ant-menu-item-selected">
+              <li nz-menu-item (click)="showLog()" *ngFor="let subItem of item.children" [routerLink]="item.path+subItem.path" routerLinkActive="ant-menu-item-selected">
                 <i nz-icon [type]="subItem.class"></i>
                 <span [nzTitle]="subItem.name" nzPlacement="right" nz-tooltip>{{subItem.name}}</span>
               </li>

@@ -114,7 +114,6 @@ export class UserInfoComponent implements OnInit {
       newPassword: [ null, [ Validators.required ] ],
       checkPassword: [ null, [ Validators.required ] ]
     });
-    console.log(this.updatePwdValidateForm);
   }
 
 }

@@ -9,15 +9,13 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 // 路由快照
 import { ReuseStrategyService } from './reuse-strategy';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { GmModalMoreComponent } from './module/gm-modal-more/gm-modal-more.component';
-import { SignManagementComponent } from './sign-management/sign-management.component';
-import { HolidayManagementComponent } from './holiday-management/holiday-management.component';
-import { StaticsManagementComponent } from './statics-management/statics-management.component';
 // 自定义通用模块引入
 // import { GmModule } from '../../../static-resources/src/app/gm/gm.module';
 
@@ -30,9 +28,7 @@ registerLocaleData(zh);
     HomeComponent,
     UserInfoComponent,
     GmModalMoreComponent,
-    SignManagementComponent,
-    HolidayManagementComponent,
-    StaticsManagementComponent
+    UserComponent
   ],
   entryComponents: [
     GmModalMoreComponent

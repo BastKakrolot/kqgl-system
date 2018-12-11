@@ -22,6 +22,7 @@ export const GLOBAL_FRAME_CONFIG = {
   }, {
     name: '签到管理',
     class: 'form',
+    path: '/sign-management',
     children: [{
       name: '签到查看',
       class: 'edit',
@@ -42,6 +43,7 @@ export const GLOBAL_FRAME_CONFIG = {
   }, {
     name: '假期管理',
     class: 'smile',
+    path: '/holiday-management',
     children: [{
       name: '请假管理',
       class: 'smile',
@@ -62,6 +64,7 @@ export const GLOBAL_FRAME_CONFIG = {
   }, {
     name: '汇总统计分析',
     class: 'radar-chart',
+    path: '/statics-management',
     children: [{
       name: '统计分析',
       class: 'line-chart',
@@ -74,6 +77,6 @@ export const GLOBAL_FRAME_CONFIG = {
   }, {
     name: '个人信息',
     class: 'user',
-    path: '/user-info'
+    path: '/user'
   }]
 };

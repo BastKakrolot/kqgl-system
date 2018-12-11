@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { FileManagementComponent } from './file-management.component';
@@ -17,7 +18,7 @@ const FileManagementRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(FileManagementRoutes)],
+  imports: [CommonModule, RouterModule.forChild(FileManagementRoutes)],
   exports: [RouterModule]
 })
 export class FileManagementRoutingModule { }

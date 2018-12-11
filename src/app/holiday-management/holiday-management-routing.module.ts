@@ -1,25 +1,28 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HolidayManagementComponent } from './holiday-management.component';
-// import { ManagementComponent } from './management/management.component';
-// import { ConfigurationComponent } from './configuration/configuration.component';
+import { QjglComponent } from './qjgl/qjgl.component';
+import { JbglComponent } from './jbgl/jbgl.component';
+import { TxglComponent } from './txgl/txgl.component';
+import { TxtjComponent } from './txtj/txtj.component';
 
 const HolidayManagementRoutes: Routes = [
   {
     path: '',
     component: HolidayManagementComponent,
     children: [
-      // { path: 'management', component: ManagementComponent, data: { title: '档案管理', shouldDetach: true } },
-      // { path: 'configuration', component: ConfigurationComponent, data: { title: '档案配置', shouldDetach: true } },
-      // { path: 'management', component: ManagementComponent, data: { title: '档案管理', shouldDetach: true } },
-      // { path: 'configuration', component: ConfigurationComponent, data: { title: '档案配置', shouldDetach: true } }
+      { path: 'qjgl', component: QjglComponent, data: { title: '请假管理', shouldDetach: true } },
+      { path: 'jbgl', component: JbglComponent, data: { title: '加班管理', shouldDetach: true } },
+      { path: 'txgl', component: TxglComponent, data: { title: '年假调休假管理', shouldDetach: true } },
+      { path: 'txtj', component: TxtjComponent, data: { title: '年假调休假统计', shouldDetach: true } }
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(HolidayManagementRoutes)],
+  imports: [CommonModule, RouterModule.forChild(HolidayManagementRoutes)],
   exports: [RouterModule]
 })
 export class HolidayManagementRoutingModule { }

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'holiday-management',
-  templateUrl: './holiday-management.component.html',
-  styleUrls: ['./holiday-management.component.css']
+  template: `<router-outlet></router-outlet>`
 })
 export class HolidayManagementComponent implements OnInit {
 
@@ -11,5 +10,4 @@ export class HolidayManagementComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

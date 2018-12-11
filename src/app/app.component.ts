@@ -33,7 +33,6 @@ export class AppComponent {
   }
 
   close(e: NzMenuItemDirective): void {
-    console.log(e);
     this.dropdown.close();
   }
   
@@ -84,6 +83,9 @@ export class AppComponent {
     // this.router.navigate([menu.url]);
     this.router.navigateByUrl(menu.url);
   }
+  showLog() {
+    console.log(this.router);
+  };
 
   constructor(
     private router: Router,
@@ -121,8 +123,9 @@ export class AppComponent {
   ngOnInit() {
     this.navi = GLOBAL_FRAME_CONFIG.navi;
     this.systemInfo = { systemName: GLOBAL_FRAME_CONFIG.systemName, systemEnglishName: GLOBAL_FRAME_CONFIG.systemEnglishName };
-    this.loginInfo = { isLoginIn: true }
+    this.loginInfo = { isLoginIn: true };
     this.triggerTemplate = this.customTrigger;
+    console.log(this.router);
     // 临时登录
     this.login.login();
   }

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'statics-management',
-  templateUrl: './statics-management.component.html',
-  styleUrls: ['./statics-management.component.css']
+  template: `<router-outlet></router-outlet>`
 })
 export class StaticsManagementComponent implements OnInit {
 
