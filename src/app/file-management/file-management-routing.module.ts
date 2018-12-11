@@ -10,8 +10,8 @@ const FileManagementRoutes: Routes = [
     path: '',
     component: FileManagementComponent,
     children: [
-      { path: 'management', component: ManagementComponent, data: { title: '档案管理', shouldDetach: true } },
-      { path: 'configuration', component: ConfigurationComponent, data: { title: '档案配置', shouldDetach: true } }
+      { path: 'management', component: ManagementComponent, data: { title: '查看用户', shouldDetach: true } },
+      { path: 'configuration', component: ConfigurationComponent, data: { title: '查看部门', shouldDetach: true } }
     ]
   }
 ];

@@ -15,7 +15,9 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { GmModalMoreComponent } from './module/gm-modal-more/gm-modal-more.component';
-
+import { SignManagementComponent } from './sign-management/sign-management.component';
+import { HolidayManagementComponent } from './holiday-management/holiday-management.component';
+import { StaticsManagementComponent } from './statics-management/statics-management.component';
 // 自定义通用模块引入
 // import { GmModule } from '../../../static-resources/src/app/gm/gm.module';
 
@@ -27,7 +29,10 @@ registerLocaleData(zh);
     AppComponent,
     HomeComponent,
     UserInfoComponent,
-    GmModalMoreComponent
+    GmModalMoreComponent,
+    SignManagementComponent,
+    HolidayManagementComponent,
+    StaticsManagementComponent
   ],
   entryComponents: [
     GmModalMoreComponent

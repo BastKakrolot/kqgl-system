@@ -19,10 +19,12 @@
       <div nz-col class="gutter-row" nzSpan="6">
       </div>
       <div nz-col class="gutter-row" nzSpan="6">
-        <div nz-row nzType="flex" nzJustify="space-around" nzAlign="middle">
+        <div nz-row nzType="flex" class="tool-button" nzJustify="space-around" nzAlign="middle">
           <div nz-col nzSpan="8"><button nz-button nzType="primary">查询</button></div>
           <div nz-col nzSpan="8"><button nz-button nzType="primary">重置</button></div>
-          <!-- <div nz-col nzSpan="8"><a (click)="moreQueryVisible=true">展开<i class="anticon anticon-left"></i></a></div> -->
+          <div nz-col nzSpan="8">
+            <a *ngIf="false" (click)="moreQueryVisible=true">展开<i class="anticon anticon-left"></i></a>
+          </div>
         </div>
       </div>
       <!-- <nz-drawer [nzClosable]="false" [nzVisible]="moreQueryVisible" [nzWidth]="450" nzTitle="更多查询条件" (nzOnClose)="moreQueryVisible=false">
