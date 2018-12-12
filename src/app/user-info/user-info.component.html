@@ -113,3 +113,11 @@
   </div>
 </div>
 </nz-header>
+<div class="no-login" *ngIf="!loginInfo.isLoginIn">
+  <div class="go-login">
+    <p><i nz-icon type="warning" theme="outline" style="font-size: 60px;"></i></p>
+    <p>
+      <span>点击右上角按钮登陆或注册！</span>
+    </p>
+  </div>
+</div>
