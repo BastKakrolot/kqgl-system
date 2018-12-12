@@ -61,10 +61,12 @@ export class AppComponent {
     this.tabs = this.tabs.slice(0, index + 1);
     // 删除复用
     ReuseStrategyService.deleteRouteSnapshot(url);
-    this.router.navigateByUrl(url);
+    if (url === this.router.url) {
+      this.router.navigateByUrl(url);
+    }
   }
 
-  //关闭当前tab
+  //关闭tab
   closeTab(url: string, event: Event) {
     event.preventDefault();
     // 当前关闭的是第几个路由
@@ -74,14 +76,17 @@ export class AppComponent {
     this.tabs = this.tabs.filter(p => p.url !== url);
     // 删除复用
     ReuseStrategyService.deleteRouteSnapshot(url);
-    // 显示上一个选中
-    let menu = this.tabs[index - 1];
-    if (!menu) {// 如果上一个没有下一个选中
-      menu = this.tabs[index];
+    //关闭的是否为当前页面
+    if (url === this.router.url) {
+      // 显示上一个选中
+      let menu = this.tabs[index - 1];
+      if (!menu) {// 如果上一个没有下一个选中
+        menu = this.tabs[index];
+      }
+      // 显示当前路由信息
+      // this.router.navigate([menu.url]);
+      this.router.navigateByUrl(menu.url);
     }
-    // 显示当前路由信息
-    // this.router.navigate([menu.url]);
-    this.router.navigateByUrl(menu.url);
   }
   showLog() {
     console.log(this.router);
