@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ManagementComponent } from './management/management.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { FileManagementComponent } from './file-management.component';
+import { FormsModule } from '@angular/forms'
 
 import { FileManagementRoutingModule } from './file-management-routing.module';
 
@@ -19,7 +20,8 @@ import { SelectModule } from '@static-resources';
     CommonModule,
     NgZorroAntdModule,
     SelectModule,
-    FileManagementRoutingModule
+    FileManagementRoutingModule,
+    FormsModule
   ],
   declarations: [
     FileManagementComponent,

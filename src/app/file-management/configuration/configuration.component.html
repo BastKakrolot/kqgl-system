@@ -1,4 +1,169 @@
-<p>
-  configuration works!
-  <button (click)="getData()" nz-button>点我</button>
-</p>
+<div class="management-box">
+<!--   <div class="left">
+    <nz-input-group [nzSuffix]="suffixIcon">
+      <input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue">
+    </nz-input-group>
+    <ng-template #suffixIcon>
+      <i nz-icon type="search"></i>
+    </ng-template>
+    <nz-tree
+      #treeCom
+      [nzData]="nodes"
+      [nzSearchValue]="searchValue"
+      (nzClick)="nzEvent($event)">
+    </nz-tree>
+  </div> -->
+  <div class="right">
+    <div nz-row nzGutter="16" class="query-box">
+      <!-- <div nz-col class="gutter-row" nzSpan="6">
+        <gm-select dicType="登记类型" gmPlaceHolder="登记类型"></gm-select>
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+        <input nz-input placeholder="受理编号">
+      </div> -->
+      <div nz-col class="gutter-row" nzSpan="6">
+        <nz-tree-select
+          style="width: 100%;" 
+          [nzNodes]="nodes"
+          nzShowSearch=true
+          nzPlaceHolder="部门查询">
+        </nz-tree-select>
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+        <!-- <input nz-input placeholder="用户名"> -->
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+<!--         <nz-select style="width: 100%;" nzAllowClear nzPlaceHolder="在职情况">
+          <nz-option nzValue="1" nzLabel="在职"></nz-option>
+          <nz-option nzValue="2" nzLabel="离职"></nz-option>
+        </nz-select> -->
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+        <div nz-row nzType="flex" class="tool-button" nzJustify="space-around" nzAlign="middle">
+          <div nz-col nzSpan="8"></div>
+          <div nz-col nzSpan="8"><button nz-button nzType="primary">查询</button></div>
+          <div nz-col nzSpan="8"><button nz-button nzType="primary">重置</button></div>
+        </div>
+      </div>
+    </div>
+    <div nz-row nzGutter="16" class="query-box">
+      <div nz-col class="gutter-row" nzSpan="6">
+        <div nz-row nzType="flex" class="tools-bottom" nzJustify="space-around" nzAlign="middle">
+          <div nz-col nzSpan="8">
+            <a><i nz-icon type="plus-circle" theme="outline"></i>添加员工</a>
+          </div>
+          <div nz-col nzSpan="8">
+            <a><i nz-icon type="upload" theme="outline"></i>导入员工</a>
+          </div>
+          <div nz-col nzSpan="8"></div>
+        </div>
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+        <div nz-row nzType="flex" class="tool-button" nzJustify="space-around" nzAlign="middle">
+          <div nz-col nzSpan="8"></div>
+          <div nz-col nzSpan="8"></div>
+          <div nz-col nzSpan="8">
+            <a *ngIf="false" (click)="moreQueryVisible=true">展开<i class="anticon anticon-left"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- <nz-drawer [nzClosable]="false" [nzVisible]="moreQueryVisible" [nzWidth]="450" nzTitle="更多查询条件" (nzOnClose)="moreQueryVisible=false">
+        <div nz-row nzGutter="8" nzAlign="middle">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>坐落</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>权利人</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8" nzAlign="middle">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>证件号</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>归档单位</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8" nzAlign="middle">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>不动产单元号</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </nz-drawer> -->
+    </div>
+    <div class="table-box" #tableBox>
+      <nz-table #nzTable nzSize="default" [nzFrontPagination]="false" [nzData]="dataSet" [nzScroll]="tableScroll" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <!-- <th nzWidth="65px" nzLeft="0px" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th> -->
+            <th nzLeft="0px" nzWidth="100px">在职情况</th>
+            <th nzLeft="100px" nzWidth="100px">雇员编号</th>
+            <th nzLeft="200px" nzWidth="100px">用户名称</th>
+            <th nzWidth="200px">所属部门</th>
+            <th>职务</th>
+            <th nzWidth="200px">入职日期</th>
+            <th nzRight="0px" nzWidth="200px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data">
+          <!--   <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="nzCheckedChange(data)"></td> -->
+            <td nzLeft="0px"><span *ngIf="data.status === '1'"><nz-tag [nzColor]="'green'">在职</nz-tag></span><span *ngIf="data.status === '2'"><nz-tag [nzColor]="'red'">离职</nz-tag></span></td>
+            <td nzLeft="100px">{{data.employeeNo}}</td>
+            <td nzLeft="200px">{{data.userName}}</td>
+            <td>{{data.depName}}</td>
+            <td>{{data.duty}}</td>
+            <td>{{data.entryDate}}</td>
+            <td nzRight="0px" class="table-option">
+              <a (click)="checkItemMore(data)">
+                <i nz-icon type="eye"></i>详情
+              </a>
+              <a (click)="checkItemUpdate(data)">
+                <i nz-icon type="edit"></i>修改
+              </a>
+              <a *ngIf="data.status === '1'" (click)="checkItemLive(data)">
+                <i nz-icon type="close-circle"></i>离职
+              </a>
+              <a *ngIf="data.status === '2'" style="color: red;" (click)="checkItemLive(data)">
+                <i nz-icon type="close-circle"></i>删除
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <div class="table-pagination">
+        <nz-pagination [nzPageIndex]="currentPageNum" [nzTotal]="totalPageNum" nzShowSizeChanger [nzPageSize]="pageSizeNum"  (nzPageIndexChange)="changePageNum($event)" (nzPageSizeChange)="changeSizeNum($event)"></nz-pagination>
+      </div>
+    </div>
+  </div>
+  <!-- 弹框 -->
+</div>

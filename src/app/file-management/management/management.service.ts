@@ -22,6 +22,7 @@ export class ManagementService {
     let filterArray = insertArray => {
       insertArray.forEach(item => {
         item.title = item[name];
+        item.key = item[name];
         if (item[children] && item[children].length > 0) {
           item['children'] = item[children]
           filterArray(item['children']);

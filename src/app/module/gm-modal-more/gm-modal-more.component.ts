@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzModalRef, NzMessageService, NzFormatEmitEvent, NzTreeNode } from 'ng-zorro-antd';
 import {
   AbstractControl,
   FormBuilder,
@@ -15,13 +15,42 @@ import {
 export class GmModalMoreComponent implements OnInit {
   @Input() detail;
   @Input() moduleName: string;
+  @Input() nodes;
   updateUserinfoForm: FormGroup;
+  liveForm: FormGroup;
   //表单验证是否通过
   bCheckValidateForm(scope) {
     if (scope.status === 'VALID') return true;
     if (scope.status === 'INVALID') return false;
   }
-  constructor(private fb: FormBuilder, private message: NzMessageService) { }
+  saveUserForm() {
+    console.log('imin saveUserForm');
+    this.closeModel();
+  }
+  liveUserForm() {
+    for (const i in this.liveForm.controls) {
+      this.liveForm.controls[ i ].markAsDirty();
+      this.liveForm.controls[ i ].updateValueAndValidity();
+    }
+    if (this.bCheckValidateForm(this.liveForm)) {
+      console.log('imin liveUserForm');
+      console.log(this.liveForm);
+      this.closeModel(this.liveForm.controls);
+    } else {
+      this.message.info('请完善表单！');
+      console.log(this.liveForm);
+    }
+  }
+  closeModel(formScope?): void {
+    this.modal.destroy();
+    if (formScope) {
+      for (const i in formScope.controls) {
+        formScope.controls[ i ].markAsPristine();
+        formScope.controls[ i ].markAsPending();
+      }
+    }
+  }
+  constructor(private fb: FormBuilder, private message: NzMessageService, private modal: NzModalRef) { }
 
   ngOnInit() {
     this.updateUserinfoForm = this.fb.group({
@@ -36,6 +65,9 @@ export class GmModalMoreComponent implements OnInit {
       entryDate: [ this.detail.entryDate, [ Validators.required ] ],
       socialWorkingAge: [ this.detail.socialWorkingAge, [ Validators.required ] ],
       graduationDate: [ this.detail.graduationDate, [ Validators.required ] ]
+    });
+    this.liveForm = this.fb.group({
+      leaveDate: [ null, [ Validators.required ] ]
     });
   }
 

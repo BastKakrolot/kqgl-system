@@ -8,21 +8,21 @@ export class Login {
 
   }
   login() {
-    let cookie = new Cookie();
-    ajax({
-      url: `${LOGIN_SERVER}login?username=gss&password=As5RPtiDBTUGkv3OzPsQRg==&appKey=${APP_KEY}`,
-      responseType: 'json'
-    }).pipe(
-      map(res => {
-        if (!res.response) {
-          throw new Error('Value expected!');
-        }
-        return res.response;
-      }),
-      catchError(err => of([]))
-    ).subscribe(response => {
-      cookie.addCookie('clientServerToken', response.data.gmsso_ser_ec_key, (1 / 48));
-      cookie.addCookie('clientCliToken', response.data.gmsso_cli_ec_key, (1 / 48));
-    });
+    // let cookie = new Cookie();
+    // ajax({
+    //   url: `${LOGIN_SERVER}login?username=gss&password=As5RPtiDBTUGkv3OzPsQRg==&appKey=${APP_KEY}`,
+    //   responseType: 'json'
+    // }).pipe(
+    //   map(res => {
+    //     if (!res.response) {
+    //       throw new Error('Value expected!');
+    //     }
+    //     return res.response;
+    //   }),
+    //   catchError(err => of([]))
+    // ).subscribe(response => {
+    //   cookie.addCookie('clientServerToken', response.data.gmsso_ser_ec_key, (1 / 48));
+    //   cookie.addCookie('clientCliToken', response.data.gmsso_cli_ec_key, (1 / 48));
+    // });
   }
 }

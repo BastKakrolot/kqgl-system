@@ -31,16 +31,18 @@ interface TableScroll {
 export class ManagementComponent implements OnInit {
 
   @ViewChild('tableBox') tableBox: Element;
+  @ViewChild('treeCom') treeCom;
   @HostListener('window:resize', ['$event'])
   //监听窗口变化
   onResize(event) {
-    let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 150;
+    let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 180;
     // let tableClientWidth = this.tableBox['nativeElement'].clientWidth;
     this.tableScroll = {
       x: '1200px',
       y: `${tableClientHeight}px`
     };
   }
+  searchValue;
   // 查询条件
   moreQueryVisible = false;
   dataSet = [];
@@ -111,8 +113,21 @@ export class ManagementComponent implements OnInit {
       nzContent: GmModalMoreComponent,
       nzComponentParams: {
         detail: data,
-        moduleName: 'update'
-      }
+        moduleName: 'update',
+        nodes: this.nodes,
+      },
+      nzFooter: [{
+        label: '取消',
+        onClick: (componentInstance) => {
+          componentInstance.closeModel();
+        }
+      }, {
+        label: '提交更改',
+        type: 'primary',
+        onClick: (componentInstance) => {
+          componentInstance.saveUserForm();
+        }
+      }]
     });
   }
   checkItemLive(data): void {
@@ -122,7 +137,19 @@ export class ManagementComponent implements OnInit {
       nzComponentParams: {
         detail: data,
         moduleName: 'live'
-      }
+      },
+      nzFooter: [{
+        label: '取消',
+        onClick: (componentInstance) => {
+          componentInstance.closeModel();
+        }
+      }, {
+        label: '确认离职',
+        type: 'primary',
+        onClick: (componentInstance) => {
+          componentInstance.liveUserForm();
+        }
+      }]
     });
   }
   changePageNum(event) {
@@ -159,7 +186,7 @@ export class ManagementComponent implements OnInit {
     //   });
     // }
     // 设置表格高度
-    let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 150;
+    let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 180;
     // let tableClientWidth = this.tableBox['nativeElement'].clientWidth;
     this.tableScroll = {
       x: '1200px',

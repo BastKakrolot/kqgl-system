@@ -1,146 +1,155 @@
 <div *ngIf="moduleName === 'more'">
-    <div class="line-item">
-        <label>雇员编号:</label>
-        <span>{{detail.employeeNo}}</span>
-    </div>
-    <div class="line-item">
-        <label>签到编号:</label>
-        <span>{{detail.signInNo}}</span>
-    </div>
-    <div class="line-item">
-        <label>用户名:</label>
-        <span>{{detail.userName}}</span>
-    </div>
-    <div class="line-item">
-        <label>地区:</label>
-        <span>{{detail.region}}</span>
-    </div>
-    <div class="line-item">
-        <label>所属部门:</label>
-        <span>{{detail.depName}}</span>
-    </div>
-    <div class="line-item">
-        <label>职务:</label>
-        <span>{{detail.duty}}</span>
-    </div>
-    <div class="line-item">
-        <label>角色:</label>
-        <span>{{detail.role}}</span>
-    </div>
-    <div class="line-item">
-        <label>入职日期:</label>
-        <span>{{detail.entryDate}}</span>
-    </div>
-    <div class="line-item">
-        <label>社会工龄:</label>
-        <span>{{detail.socialWorkingAge}}</span>
-    </div>
-    <div class="line-item">
-        <label>毕业日期:</label>
-        <span>{{detail.graduationDate}}</span>
-    </div>
-    <div class="line-item">
-        <label>离职日期:</label>
-        <span>{{detail.leaveDate}}</span>
-    </div>
+  <div class="line-item">
+    <label>雇员编号:</label>
+    <span>{{detail.employeeNo}}</span>
+  </div>
+  <div class="line-item">
+    <label>签到编号:</label>
+    <span>{{detail.signInNo}}</span>
+  </div>
+  <div class="line-item">
+    <label>用户名:</label>
+    <span>{{detail.userName}}</span>
+  </div>
+  <div class="line-item">
+    <label>地区:</label>
+    <span>{{detail.region}}</span>
+  </div>
+  <div class="line-item">
+    <label>所属部门:</label>
+    <span>{{detail.depName}}</span>
+  </div>
+  <div class="line-item">
+    <label>职务:</label>
+    <span>{{detail.duty}}</span>
+  </div>
+  <div class="line-item">
+    <label>角色:</label>
+    <span>{{detail.role}}</span>
+  </div>
+  <div class="line-item">
+    <label>入职日期:</label>
+    <span>{{detail.entryDate}}</span>
+  </div>
+  <div class="line-item">
+    <label>社会工龄:</label>
+    <span>{{detail.socialWorkingAge}}</span>
+  </div>
+  <div class="line-item">
+    <label>毕业日期:</label>
+    <span>{{detail.graduationDate}}</span>
+  </div>
+  <div class="line-item">
+    <label>离职日期:</label>
+    <span>{{detail.leaveDate}}</span>
+  </div>
 </div>
 <div *ngIf="moduleName === 'update'">
-    <form nz-form [formGroup]="updateUserinfoForm" [nzLayout]="vertical" class="login-form" (ngSubmit)="submitPwdForm()">
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="employeeNo" placeholder="雇员编号">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('employeeNo').dirty && updateUserinfoForm.get('employeeNo').errors">雇员编号不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input placeholder="签到编号">
-          </nz-input-group>
-   <!--        <nz-form-explain *ngIf="updateUserinfoForm.get('password').dirty && updateUserinfoForm.get('password').errors">请输入原密码!</nz-form-explain> -->
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="userName" placeholder="用户名">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('userName').dirty && updateUserinfoForm.get('userName').errors">用户名不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="password" nz-input formControlName="password" placeholder="密码">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('password').dirty && updateUserinfoForm.get('password').errors">密码不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="region" placeholder="地区">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('region').dirty && updateUserinfoForm.get('region').errors">地区不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="depName" placeholder="所属部门">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('depName').dirty && updateUserinfoForm.get('depName').errors">所属部门不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="duty" placeholder="职务">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('duty').dirty && updateUserinfoForm.get('duty').errors">职务不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="role" placeholder="角色">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('role').dirty && updateUserinfoForm.get('role').errors">角色不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="entryDate" placeholder="入职日期">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('entryDate').dirty && updateUserinfoForm.get('entryDate').errors">入职日期不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="socialWorkingAge" placeholder="社会工龄">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('socialWorkingAge').dirty && updateUserinfoForm.get('socialWorkingAge').errors">社会工龄不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <input type="text" nz-input formControlName="graduationDate" placeholder="毕业日期">
-          </nz-input-group>
-          <nz-form-explain *ngIf="updateUserinfoForm.get('graduationDate').dirty && updateUserinfoForm.get('graduationDate').errors">毕业日期不能为空!</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
+  <form nz-form [formGroup]="updateUserinfoForm" [nzLayout]="vertical" class="login-form" (ngSubmit)="saveUserForm()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="employeeNo">雇员编号</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input type="text" nz-input formControlName="employeeNo">
+        <nz-form-explain *ngIf="updateUserinfoForm.get('employeeNo').dirty && updateUserinfoForm.get('employeeNo').errors">雇员编号不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">签到编号</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input type="text" nz-input>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="userName">用户名</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input type="text" nz-input formControlName="userName">
+        <nz-form-explain *ngIf="updateUserinfoForm.get('userName').dirty && updateUserinfoForm.get('userName').errors">用户名不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="password">密码</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input type="password" nz-input formControlName="password">
+        <nz-form-explain *ngIf="updateUserinfoForm.get('password').dirty && updateUserinfoForm.get('password').errors">密码不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="region">地区</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="region">
+          <nz-option nzValue="武汉" nzLabel="武汉"></nz-option>
+          <nz-option nzValue="兰州" nzLabel="兰州"></nz-option>
+          <nz-option nzValue="石家庄" nzLabel="石家庄"></nz-option>
+          <nz-option nzValue="乌鲁木齐" nzLabel="乌鲁木齐"></nz-option>
+          <nz-option nzValue="呼和浩特" nzLabel="呼和浩特"></nz-option>
+          <nz-option nzValue="太原" nzLabel="太原"></nz-option>
+          <nz-option nzValue="武威" nzLabel="武威"></nz-option>
+          <nz-option nzValue="玛纳斯" nzLabel="玛纳斯"></nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="updateUserinfoForm.get('region').dirty && updateUserinfoForm.get('region').errors">地区不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="depName">所属部门</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <!-- <input type="text" nz-input formControlName="depName"> -->
+        <nz-tree-select
+          [nzNodes]="nodes"
+          nzShowSearch
+          nzPlaceHolder="所属部门"
+          formControlName="depName">
+        </nz-tree-select>
+        <nz-form-explain *ngIf="updateUserinfoForm.get('depName').dirty && updateUserinfoForm.get('depName').errors">所属部门不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="duty">职务</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input type="text" nz-input formControlName="duty">
+        <nz-form-explain *ngIf="updateUserinfoForm.get('duty').dirty && updateUserinfoForm.get('duty').errors">职务不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="role">角色</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="role">
+          <nz-option nzValue="员工" nzLabel="员工"></nz-option>
+          <nz-option nzValue="管理员" nzLabel="管理员"></nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="updateUserinfoForm.get('role').dirty && updateUserinfoForm.get('role').errors">角色不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="entryDate">入职日期</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-date-picker formControlName="entryDate"></nz-date-picker>
+        <nz-form-explain *ngIf="updateUserinfoForm.get('entryDate').dirty && updateUserinfoForm.get('entryDate').errors">入职日期不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="socialWorkingAge">社会工龄</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input type="text" nz-input formControlName="socialWorkingAge">
+        <nz-form-explain *ngIf="updateUserinfoForm.get('socialWorkingAge').dirty && updateUserinfoForm.get('socialWorkingAge').errors">社会工龄不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="graduationDate">毕业日期</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-date-picker formControlName="graduationDate"></nz-date-picker>
+        <nz-form-explain *ngIf="updateUserinfoForm.get('graduationDate').dirty && updateUserinfoForm.get('graduationDate').errors">毕业日期不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
 </div>
 <div *ngIf="moduleName === 'live'">
-    <p>雇员编号:{{detail.employeeNo}}</p>
-    <p>签到编号:{{detail.signInNo}}</p>
-    <p>用户名:{{detail.userName}}</p>
-    <p>地区:{{detail.region}}</p>
-    <p>所属部门:{{detail.depName}}</p>
-    <p>职务:{{detail.duty}}</p>
+  <form nz-form [formGroup]="liveForm" [nzLayout]="vertical" class="login-form" (ngSubmit)="liveUserForm()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="leaveDate">离职日期</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-date-picker formControlName="leaveDate"></nz-date-picker>
+        <nz-form-explain *ngIf="liveForm.get('leaveDate').dirty && liveForm.get('leaveDate').errors">离职日期不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
 </div>

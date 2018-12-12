@@ -10,8 +10,28 @@ export class ConfigurationService {
     private http: HttpClient
   ) { }
   private httpClientService = new HttpClientService(this.http);
-  getData(gmParams?: object, options?: GmOptions): Observable<any> {
+  getDepartmentData(gmParams?: object, options?: GmOptions): Observable<any> {
     return this.httpClientService
-      .getRequest(RESTURL.getData, gmParams, options);
+      .getRequest(RESTURL.department.listDepartment, gmParams, options);
+  }
+  getUserData(gmParams?: object, options?: GmOptions): Observable<any> {
+    return this.httpClientService
+      .getRequest(RESTURL.user.queryUser, gmParams, options);
+  }
+  changeTreeNode(treeArray: Array<any>, name = 'name', children = 'children') {
+    let filterArray = insertArray => {
+      insertArray.forEach(item => {
+        item.title = item[name];
+        item.key = item[name];
+        if (item[children] && item[children].length > 0) {
+          item['children'] = item[children]
+          filterArray(item['children']);
+        } else {
+          item.isLeaf = true;
+        }
+      });
+    }
+    filterArray(treeArray);
+    return treeArray;
   }
 }
